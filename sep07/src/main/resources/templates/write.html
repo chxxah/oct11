@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{./css/thymeleaf.css}">
+<link rel="stylesheet" type="text/css" th:href="@{./css/write.css}">
+<script type="text/javascript">
+	function writef(){
+		let title = document.getElementById('title');
+		let content = document.getElementById('content');
+		
+		const reg = new RegExp('.jpg|.png|.gif');
+		if(title.value == '' || title.value == null){
+			document.querySelector('#result').innerText = "제목을 입력하세요.";
+			//document.getElementById('write-form').style.backgroundColor = "red";
+			title.style.backgroundColor = "red";
+			title.style.borderColor = "#FF0000";
+			title.focus();
+			return false;
+		}
+		title.style.backgroundColor = "write";
+		if(content.value == '' || content.value == null){
+			document.querySelector('#result').innerText = "내용을 입력하세요.";
+			//document.getElementById('write-form').style.backgroundColor = "red";
+			content.style.backgroundColor = "red";
+			content.style.borderColor = "#FF0000";
+			content.focus();
+			return false;
+		}
+		content.style.backgroundColor = "write";
+		document.getElementById('write-form').style.backgroundColor = "gray";
+		
+		let file = document.getElementById("img").value;
+		if(file != "" || file != null){
+			//let extention = file.substr(file.lastIndexOf('.'));
+			const reg = /([^\s]+(?=\.(jpg|gif|png))\.\2)/;
+			//alert(reg.test(file));
+			if(!(reg.test(file))){		
+				alert("그림파일(jpg, png, gif)만 선택 가능합니다.");
+				document.querySelector('#result').innerText = "그림파일(jpg, png, gif)만 선택 가능합니다.";
+				return false;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<th:block th:insert="~{/menu.html :: menu}"></th:block>
+	<div class="main">
+		<h1>write</h1>
+		<div id="write-form">
+			<form action="./write" method="post" enctype="multipart/form-data" onsubmit="return writef();">
+				<input type="text" name="title" id="title">
+				<textarea name="content" id="content"></textarea>
+				<input type="file" name="img" id="img" accept=".jpg, .png, .gif">
+				<div id="result">그림파일(jpg, png, gif)만 선택 가능</div>
+				<button type="submit">write</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

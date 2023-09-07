@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{./css/thymeleaf.css}">
+</head>
+<body>
+	<th:block th:insert="~{/menu.html :: menu}"></th:block>
+	<div class="main">
+		<h1>회원리스트</h1>
+		<table>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>사는곳</th>
+				<th>취미</th>
+			</tr>
+			<tr th:each="row : ${list}">
+				<td th:text="${row._id}">번호자리</td>
+				<td th:text="${row.name}"></td>
+				<td th:text="${row.addr}">글쓴이</td>
+				<td th:text="${row.hobby}">날짜</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

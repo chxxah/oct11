@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>BOARD</title>
+<link rel="stylesheet" type="text/css" th:href="@{./css/board.css}">
+<link rel="stylesheet" type="text/css" th:href="@{./css/thymeleaf.css}">
+</head>
+<body>
+	<th:block th:insert="~{/menu.html :: menu}"></th:block>
+	<h1>Board</h1>
+	<h2>[[${count}]]개의 글이 있습니다.</h2>
+	<table>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+		<tr th:each="row : ${list}"> <!-- 리스트란 녀석을 row로 풀어쓸거야~ -->
+			<td th:text="${row.id}"></td>
+			<td th:onclick="|location.href='@{/detail(no=${row.id})}'|" th:text="${row.title}"></td>
+			<td th:text="${row.name}"></td>
+			<td th:text="${row.date}"></td>
+		</tr>
+	</table>
+	<button th:onclick="|location.href='@{/write}'|">작성하기</button>
+</body>
+</html>

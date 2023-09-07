@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+table {
+	width: 900px;
+	height: auto;
+	border-collapse: collapse;
+}
+th{
+	background-color: #c0c0c0;
+	border-bottom: 1px solid;
+}
+td{
+	border-bottom: 1px solid;
+	text-align: center;
+}
+
+tr:hover {
+	background-color: #c1c1c1;
+}

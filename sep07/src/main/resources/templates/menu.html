@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+	<nav th:fragment="menu">
+		<ul>
+			<li th:onclick="|location.href='@{/}'|">홈</li>
+			<li th:onclick="|location.href='@{/board}'|">게시판</li>
+			<li th:onclick="|location.href='@{/sns}'|">SNS</li>
+			<li th:onclick="|location.href='@{/info}'|">정보보기</li>
+			<li th:if="${session.id ne null}" th:onclick="|location.href='@{/logout}'|">로그아웃</li>
+			<li th:if="${session.id eq null}" th:onclick="|location.href='@{/login}'|">로그인</li>
+		</ul>
+	</nav>
+	
+	<div th:fragment="footer">
+		footer입니다.
+	</div>
+</body>
+</html>

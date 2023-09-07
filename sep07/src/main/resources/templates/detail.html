@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{./css/thymeleaf.css}">
+</head>
+<body>
+	<th:block th:insert="~{/menu.html :: menu}"></th:block>
+	<div class="main">
+		<h1>상세보기</h1>
+		<button th:onclick="|location.href='@{/update(no=${detail.id})}'|">update</button>
+		<button th:onclick="|location.href='@{/delete(no=${detail.id})}'|">delete</button>
+		<hr>
+		[[${detail.id}]]<br> [[${detail.title}]]<br>
+		[[${detail.content}]]<br> [[${detail.name}]]<br>
+		[[${detail.date}]]<br>
+		<div th:if="${detail.img ne null}">				
+			<img th:src="${detail.img}">
+		</div>
+		<button th:onclick="|location.href='@{/board}'|">board</button>
+	</div>
+</body>
+</html>

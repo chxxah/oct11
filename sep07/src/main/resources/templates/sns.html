@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{./css/thymeleaf.css}">
+<style type="text/css">
+.box{
+	width: 500px;
+	height: auto;
+	background-color: rgb(231, 231, 231);
+	margin: 10px;
+	padding: 10px;
+}
+.box img{
+	width: 500px;
+}
+</style>
+</head>
+<body>
+	<th:block th:insert="~{/menu.html :: menu}"></th:block>
+	<div class="main">
+		<button th:onclick="|location.href='@{/write}'|">글쓰기</button>
+		<th:block th:each="row : ${list}">
+			<div class="box">
+				[[${row.title}]]
+				[[${row.name}]] / [[${row.date}]]
+				<hr>
+				[[${row.content}]]
+				<div th:if="${row.img ne null}">				
+					<img th:src="${row.img}">
+				</div>
+			</div>
+			
+			
+		</th:block>
+	</div>
+</body>
+</html>
